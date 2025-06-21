@@ -1,10 +1,10 @@
 import os
 from flask import Flask
 from flask_cors import CORS
-#from supabase import create_client, Client
-#from dotenv import load_dotenv
-#import boto3
-'''
+from supabase import create_client, Client
+from dotenv import load_dotenv
+import boto3
+
 load_dotenv()
 
 supabase_url: str | None = os.getenv('SUPABASE_URL')
@@ -38,7 +38,7 @@ s3_client = boto3.client(
 )
 
 S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
-'''
+
 def create_app():
     """Flask application factory."""
     app = Flask(__name__)

@@ -1,29 +1,10 @@
 import Link from "next/link"
+import NavBar from "@/components/NavBar"
 
 export default function SignupPage() {
   return (
     <div className="h-screen bg-white text-black flex flex-col">
-      <header className="border-b border-black">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold tracking-tight hover:opacity-60 transition-opacity">
-              OpenPoker
-            </Link>
-            <nav className="hidden md:flex items-center space-x-12">
-              <Link href="#" className="text-black hover:opacity-60 transition-opacity font-medium">
-                Play
-              </Link>
-              <Link href="#" className="text-black hover:opacity-60 transition-opacity font-medium">
-                Data
-              </Link>
-              <Link href="#" className="text-black hover:opacity-60 transition-opacity font-medium">
-                API
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+      <NavBar />
       <div className="flex-1 flex">
         {/* Left Side - Information */}
         <div className="w-1/2 border-r border-black flex items-center justify-center p-12 relative">
@@ -67,7 +48,6 @@ export default function SignupPage() {
 
         {/* Right Side - Signup Form */}
         <div className="w-1/2 flex items-center justify-center p-12 bg-white relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03),transparent_70%)]"></div>
 
           <div className="w-full max-w-sm space-y-6 relative z-10">
             <div className="space-y-3">
@@ -75,44 +55,30 @@ export default function SignupPage() {
               <div className="w-12 h-1 bg-black"></div>
             </div>
 
-            <form className="space-y-5">
-              <div className="space-y-3">
-                <div className="space-y-1">
-                  <label htmlFor="username" className="block text-sm font-medium">
+            <form className="space-y-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="email" className="block text-base font-medium">
                     Username
                   </label>
                   <input
                     id="username"
                     type="text"
                     placeholder="pokerpro"
-                    className="h-10 w-full text-sm border-2 border-black focus:outline-none focus:ring-0 focus:border-black bg-white px-3"
-                    required
-                  />
-                  <p className="text-xs font-light mt-1">Only you will see this. Others will see your UserID.</p>
-                </div>
-
-                <div className="space-y-1">
-                  <label htmlFor="email" className="block text-sm font-medium">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    className="h-10 w-full text-sm border-2 border-black focus:outline-none focus:ring-0 focus:border-black bg-white px-3"
+                    className="h-12 w-full border-2 border-black focus:outline-none focus:ring-0 focus:border-black bg-white px-3"
                     required
                   />
                 </div>
 
-                <div className="space-y-1">
-                  <label htmlFor="password" className="block text-sm font-medium">
+                <div className="space-y-2">
+                  <label htmlFor="password" className="block text-base font-medium">
                     Password
                   </label>
                   <input
                     id="password"
                     type="password"
                     placeholder="••••••••"
-                    className="h-10 w-full text-sm border-2 border-black focus:outline-none focus:ring-0 focus:border-black bg-white px-3"
+                    className="h-12 w-full border-2 border-black focus:outline-none focus:ring-0 focus:border-black bg-white px-3"
                     required
                   />
                 </div>
@@ -142,7 +108,7 @@ export default function SignupPage() {
 
                 <button
                   type="submit"
-                  className="w-full h-10 bg-black text-white hover:bg-gray-900 text-sm font-medium transition-colors duration-200"
+                  className="w-full h-12 bg-black text-white hover:bg-gray-900 font-medium transition-colors duration-200"
                 >
                   Create Account
                 </button>
@@ -159,7 +125,7 @@ export default function SignupPage() {
                 </div>
               </div>
 
-              <p className="text-xs font-light">
+              <p className="text-sm font-light">
                 Already have an account?{" "}
                 <Link href="/login" className="font-medium underline hover:opacity-60 transition-opacity">
                   Sign in

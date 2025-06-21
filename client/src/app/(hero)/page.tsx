@@ -1,4 +1,4 @@
-import NavBar from "@/components/hero/NavBar"
+import NavBar from "@/components/NavBar"
 import MainContent from "@/components/hero/MainContent"
 import MobileContent from "@/components/hero/MobileContent"
 

@@ -8,7 +8,7 @@ const MainContent = () => {
         <div className="grid grid-cols-12 h-[calc(100vh-120px)]">
           <div className="col-span-12 lg:col-span-7 flex flex-col justify-between py-16">
             
-            <h1 className="text-7xl lg:text-8xl font-bold tracking-tight">
+            <h1 className="text-9xl font-bold tracking-tight">
               Every
               <br />
               Hand

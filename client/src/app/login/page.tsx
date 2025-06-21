@@ -1,28 +1,10 @@
+import NavBar from "@/components/NavBar"
 import Link from "next/link"
 
 export default function LoginPage() {
   return (
     <div className="h-screen bg-white text-black flex flex-col">
-      <header className="border-b border-black">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold tracking-tight hover:opacity-60 transition-opacity">
-              OpenPoker
-            </Link>
-            <nav className="hidden md:flex items-center space-x-12">
-              <Link href="#" className="text-black hover:opacity-60 transition-opacity font-medium">
-                Play
-              </Link>
-              <Link href="#" className="text-black hover:opacity-60 transition-opacity font-medium">
-                Data
-              </Link>
-              <Link href="#" className="text-black hover:opacity-60 transition-opacity font-medium">
-                API
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <NavBar />
 
       <div className="flex-1 flex">
         {/* Left Side - Information */}
@@ -68,8 +50,6 @@ export default function LoginPage() {
 
         {/* Right Side - Login Form */}
         <div className="w-1/2 flex items-center justify-center p-12 bg-white relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03),transparent_70%)]"></div>
-
           <div className="w-full max-w-sm space-y-8 relative z-10">
             <div className="space-y-3">
               <h1 className="text-4xl font-bold tracking-tight">Sign In</h1>

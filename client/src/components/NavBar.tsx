@@ -6,7 +6,7 @@ const NavBar = () => {
     <header className="border-b border-black px-18">
         <div className="mx-auto py-5">
           <div className="flex items-center justify-between">
-            <div className="text-xl font-semibold tracking-tight">openpoker</div>
+            <Link href="/" className="text-xl font-semibold tracking-tight">openpoker</Link>
             <nav className="hidden md:flex items-center space-x-12">
               <Link href="/login" className="text-black hover:opacity-60 transition-opacity font-medium">
                 Play
