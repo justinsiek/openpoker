@@ -1,17 +1,16 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
+from server.config import create_app
+from server.auth.routes import auth_bp
+import os
 
-app = Flask(__name__)
-CORS(app)
+app = create_app()
 
-@app.route('/api/double', methods=['GET'])
-def double_number():
-    number_str = request.args.get('number', default='0', type=str)
+app.register_blueprint(auth_bp)
 
-    number = int(number_str)
-    doubled_number = number * 2
-
-    return jsonify({'result': doubled_number})
+@app.route('/')
+def index():
+    return "Flask server is running!"
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    port = int(os.environ.get("PORT", 8080))
+    print(f"Starting Flask server on port {port}...")
+    app.run(debug=os.getenv('FLASK_DEBUG', 'True').lower() == 'true', host='localhost', port=port)
