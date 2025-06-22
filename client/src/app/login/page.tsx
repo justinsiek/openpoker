@@ -1,5 +1,5 @@
 "use client"
-import NavBar from "@/components/NavBar"
+import NavBar from "@/components/hero/NavBar"
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation"

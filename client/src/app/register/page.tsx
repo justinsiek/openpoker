@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import NavBar from "@/components/NavBar"
+import NavBar from "@/components/hero/NavBar"
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
