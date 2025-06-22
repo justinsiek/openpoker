@@ -18,6 +18,7 @@ def register():
 
   if not username or not password:
     return jsonify({'message': 'username and password are required'}), 400
+  
   try:
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     print(f"Attempting registration for user: {username}")
@@ -26,14 +27,7 @@ def register():
       'username': username,
       'password_hash': hashed_password.decode('utf-8')
     }).execute()
-
-    if hasattr(response, 'error') and response.error:
-      error_message = str(response.error)
-      print(f"Supabase registration error: {error_message}")
-      if '23505' in error_message or 'duplicate key value violates unique constraint' in error_message:
-        return jsonify({'message': 'username already exists'}), 409
-      return jsonify({'message': 'Registration failed due to database error'}), 500
-
+    
     if response.data:
       print(f"User {username} registered successfully. DB response: {response.data}")
       return jsonify({'message': 'User registered successfully'}), 201
@@ -43,6 +37,10 @@ def register():
 
   except Exception as e:
     print(f"Exception during registration for {username}: {e}")
+    error_message = str(e)
+    
+    if '23505' in error_message:
+      return jsonify({'message': 'Username already exists'}), 409
     return jsonify({'message': 'An internal error occurred during registration'}), 500
 
 

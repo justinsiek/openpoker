@@ -6,8 +6,7 @@ const MainContent = () => {
   return (
     <main className="container mx-auto px-16">
         <div className="grid grid-cols-12 h-[calc(100vh-120px)]">
-          <div className="col-span-12 lg:col-span-7 flex flex-col justify-between py-16">
-            
+          <div className="col-span-7 flex flex-col justify-between py-16">
             <h1 className="text-9xl font-bold tracking-tight">
               Every
               <br />

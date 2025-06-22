@@ -1,7 +1,69 @@
+"use client"
 import Link from "next/link"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import NavBar from "@/components/NavBar"
 
 export default function SignupPage() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    terms: false
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
+  const router = useRouter()
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value, type, checked } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [id]: type === 'checkbox' ? checked : value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setError("")
+    setSuccess("")
+
+    if (!formData.terms) {
+      setError("Please agree to the terms and conditions")
+      setIsLoading(false)
+      return
+    }
+
+    try {
+      const response = await fetch('http://localhost:8080/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password
+        })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSuccess("Account created successfully! Redirecting to login...")
+        setTimeout(() => {
+          router.push('/login')
+        }, 2000)
+      } else {
+        setError(data.message || 'Registration failed')
+      }
+    } catch (err) {
+      setError('Network error. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="h-screen bg-white text-black flex flex-col">
       <NavBar />
@@ -54,22 +116,23 @@ export default function SignupPage() {
               <h1 className="text-4xl font-bold tracking-tight">Join Us</h1>
               <div className="w-12 h-1 bg-black"></div>
             </div>
-
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-base font-medium">
+                  <label htmlFor="username" className="block text-base font-medium">
                     Username
                   </label>
                   <input
                     id="username"
                     type="text"
                     placeholder="pokerpro"
+                    value={formData.username}
+                    onChange={handleInputChange}
                     className="h-12 w-full border-2 border-black focus:outline-none focus:ring-0 focus:border-black bg-white px-3"
                     required
+                    disabled={isLoading}
                   />
                 </div>
-
                 <div className="space-y-2">
                   <label htmlFor="password" className="block text-base font-medium">
                     Password
@@ -78,8 +141,11 @@ export default function SignupPage() {
                     id="password"
                     type="password"
                     placeholder="••••••••"
+                    value={formData.password}
+                    onChange={handleInputChange}
                     className="h-12 w-full border-2 border-black focus:outline-none focus:ring-0 focus:border-black bg-white px-3"
                     required
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -90,8 +156,11 @@ export default function SignupPage() {
                     <input
                       id="terms"
                       type="checkbox"
-                      className="w-4 h-4 border-2 border-black focus:ring-0 focus:outline-none checked:bg-black"
+                      checked={formData.terms}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 border-2 border-black focus:outline-none text-black"
                       required
+                      disabled={isLoading}
                     />
                   </div>
                   <label htmlFor="terms" className="text-xs font-light leading-relaxed">
@@ -105,12 +174,22 @@ export default function SignupPage() {
                     </Link>
                   </label>
                 </div>
-
+                {error && (
+                  <div className="text-red-400 text-sm font-light">
+                    {error}
+                  </div>
+                )}
+                {success && (
+                  <div className="text-green-400 text-sm font-light">
+                    {success}
+                  </div>
+                )}
                 <button
                   type="submit"
-                  className="w-full h-12 bg-black text-white hover:bg-gray-900 font-medium transition-colors duration-200"
+                  disabled={isLoading}
+                  className="w-full h-12 bg-black text-white hover:bg-gray-900 font-medium transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  Create Account
+                  {isLoading ? "Creating Account..." : "Create Account"}
                 </button>
               </div>
             </form>

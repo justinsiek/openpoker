@@ -59,7 +59,7 @@ export default function LoginPage() {
             <form className="space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-base font-medium">
+                  <label className="block text-base font-medium">
                     Username
                   </label>
                   <input
@@ -72,7 +72,7 @@ export default function LoginPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="password" className="block text-base font-medium">
+                  <label className="block text-base font-medium">
                     Password
                   </label>
                   <input
