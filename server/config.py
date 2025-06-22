@@ -27,7 +27,7 @@ if not jwt_secret:
     print("Warning: JWT_SECRET is not set in .env file. Authentication will fail.")
     raise ValueError("JWT Secret not found. Check .env file.")
 
-# S3 configuration
+'''
 print(f"Checking S3 config: {os.getenv('S3_BUCKET_NAME')}, region: {os.getenv('AWS_REGION')}")
 
 s3_client = boto3.client(
@@ -38,6 +38,7 @@ s3_client = boto3.client(
 )
 
 S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
+'''
 
 def create_app():
     """Flask application factory."""

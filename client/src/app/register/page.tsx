@@ -70,12 +70,12 @@ export default function SignupPage() {
       <div className="flex-1 flex">
         {/* Left Side - Information */}
         <div className="w-1/2 border-r border-black flex items-center justify-center p-12 relative">
-
           <div className="max-w-md space-y-8 relative z-10">
             <div className="space-y-4">
-              <h2 className="text-5xl font-bold tracking-tight">
-                Data-Driven <br />
-                Poker
+              <h2 className="text-6xl font-bold tracking-tight">
+                Play. <br />
+                Analyze. <br />
+                Improve.
               </h2>
               <div className="w-16 h-1 bg-black"></div>
             </div>
@@ -88,7 +88,6 @@ export default function SignupPage() {
                   stakes and formats.
                 </p>
               </div>
-
               <div className="space-y-3">
                 <h3 className="text-xl font-bold">Access All Data</h3>
                 <p className="font-light leading-relaxed">
@@ -96,12 +95,11 @@ export default function SignupPage() {
                   comprehensive API.
                 </p>
               </div>
-
               <div className="space-y-3">
-                <h3 className="text-xl font-bold">Join the Community</h3>
+                <h3 className="text-xl font-bold">Player Privacy</h3>
                 <p className="font-light leading-relaxed">
-                  Connect with data scientists, poker enthusiasts, and developers using OpenPoker data to advance poker
-                  strategy.
+                  Your identity remains private with our UserID system, while still contributing to the largest open
+                  poker database.
                 </p>
               </div>
             </div>
@@ -113,7 +111,7 @@ export default function SignupPage() {
 
           <div className="w-full max-w-sm space-y-6 relative z-10">
             <div className="space-y-3">
-              <h1 className="text-4xl font-bold tracking-tight">Join Us</h1>
+              <h1 className="text-5xl font-bold tracking-tight">Join Us</h1>
               <div className="w-12 h-1 bg-black"></div>
             </div>
             <form onSubmit={handleSubmit} className="space-y-6">
