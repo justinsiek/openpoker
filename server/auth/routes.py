@@ -92,6 +92,21 @@ def login():
         print(f"Exception during login for {username}: {e}")
         return jsonify({'message': 'An error occurred during login'}), 500
 
-
+@auth_bp.route('/logout', methods=['POST'])
+def logout():
+    """Clears the JWT token cookie to log the user out."""
+    print("Logout request received.")
+    resp = make_response(jsonify({'message': 'Logout successful'}))
+    
+    cookie_options = {
+        'httponly': True,
+        'samesite': 'Lax',
+        'secure': request.is_secure,
+        'path': '/',
+        'expires': 0
+    }
+    resp.set_cookie('jwtToken', '', **cookie_options)
+    print("Logout successful, cookie cleared.")
+    return resp, 200
 
   
